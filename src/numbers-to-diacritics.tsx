@@ -1,27 +1,7 @@
 import {
-    Action,
-    ActionPanel,
-    Application,
-    Cache,
     Clipboard,
-    closeMainWindow,
-    Color,
-    environment,
-    getFrontmostApplication,
-    getPreferenceValues,
     getSelectedText,
-    Icon,
-    LaunchProps,
-    List,
-    popToRoot,
-    showHUD,
-    showToast,
-    Toast,
-    Keyboard,
   } from "@raycast/api";
-import { Console, log } from "console";
-
-  import { useEffect, useState } from "react";
   
   async function getSelection() {
     try {
@@ -81,8 +61,8 @@ import { Console, log } from "console";
       return;
     }
     
-    const keks = replaceNumbers(stringToBeChanged)
-    Clipboard.paste(keks);
+    const valueToBePaste = replaceNumbers(stringToBeChanged)
+    Clipboard.paste(valueToBePaste);
     // nemus93
     // nemus93 93 nemus93
 
