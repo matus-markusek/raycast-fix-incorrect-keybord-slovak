@@ -2,28 +2,33 @@ import { Clipboard } from "@raycast/api";
 import { getTextForReplacements } from "./functions";
 
 const replacements: { [key: string]: string } = {
-  "ľ" : "2",
-  "š" : "3",
-  "č" : "4",
-  "ť" : "5",
-  "ž" : "6",
-  "ý" : "7",
-  "á" : "8",
-  "í" : "9",
-  "é" : "0",
-  "ú" : "[",
-  "ä" : "]",
-  "ô" : ";",
-  "ň" : "\\",
+  "1": "+",
+  "2": "ľ",
+  "3": "š",
+  "4": "č",
+  "5": "ť",
+  "6": "ž",
+  "7": "ý",
+  "8": "á",
+  "9": "í",
+  "0": "é",
+  "[": "ú",
+  "]": "ä",
+  ";": "ô",
+  "\\": "ň",
 };
 
-function replaceCharacters(input: string): string {
+function replaceNumbers(input: string): string {
   let finalString = "";
-  const stringInput = String(input);
 
-  stringInput.split(" ").forEach((word, index) => {
+  input.split(" ").forEach((word, index) => {
     if (index > 0) {
       finalString += " ";
+    }
+
+    if (!isNaN(Number(word)) && !isNaN(parseFloat(word))) {
+      finalString += word;
+      return;
     }
 
     for (let i = 0; i < word.length; i++) {
@@ -43,7 +48,7 @@ function replaceCharacters(input: string): string {
 
 export default async function Command() {
   await Clipboard.paste(
-      replaceCharacters(
+      replaceNumbers(
           String(
               await getTextForReplacements()
           )
